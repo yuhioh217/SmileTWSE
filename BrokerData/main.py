@@ -4,5 +4,5 @@ import json
 
 if __name__ == "__main__":
     _getAllBroker = getAllBroker()
-    #_getMoney = getMoney()
-    # print(_getMoney.getID())
+    _getAllBroker.setConfigPath("./config/brokers.json")
+    _getAllBroker.fetchData()
