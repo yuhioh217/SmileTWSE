@@ -52,8 +52,8 @@ if __name__ == "__main__":
                     db.insertOne(init_json)
 
                 # print(json.dumps(bjson["brokers"][0], ensure_ascii=False))
-                _getTrade = getBranchTrade(bjson["brokers"][0]["id"],
-                                           bjson["brokers"][0]["branches"][0], today, today, "B")
+                _getTrade = getBranchTrade(bjson["brokers"][i]["id"],
+                                           bjson["brokers"][i]["branches"][j], today, today, "B")
                 jsonObj = {
                     "date": today,
                     "buy": _getTrade.getBuy(),

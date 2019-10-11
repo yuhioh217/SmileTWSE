@@ -94,8 +94,9 @@ class getBranchTrade():
     '''
 
     def saveDataToEachStock(self, id, name, broker_branch, diff):
-
+        # print(broker_branch)
         queryStockIsExist = self.db.getQueryCount({"id": id})
+        # print(queryStockIsExist)
         if queryStockIsExist is 0:
             init_json = {
                 "id": id,
@@ -115,9 +116,9 @@ class getBranchTrade():
                                {"$push": {"data": todayJson}}
                                )
 
-        # todo: need to check the query string
+        # todo
         isSet = self.db .getQueryCount(
-            {"$and": [{"id": id}, {"data": {"$elemMatch": {"date": self.today, "diff": diff}}}]})
+            {"$and": [{"id": id}, {"data": {"$elemMatch": {"date": self.today}}}, {"data": {"$elemMatch": {"brokerbranch": broker_branch}}}]})
 
         print(isSet)
         if isSet is 0:
