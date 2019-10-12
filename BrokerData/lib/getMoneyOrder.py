@@ -118,8 +118,8 @@ class getBranchTrade():
 
         # todo
         isSet = self.db .getQueryCount(
-            {"$and": [{"id": id}, {"data": {"$elemMatch": {"date": self.today}}}, {"data": {"$elemMatch": {"brokerbranch": broker_branch}}}]})
-
+            {"$and": [{"id": id}, {"data": {"$elemMatch": {"date": self.today, "brokerbranch": broker_branch}}}]})
+        print(id + " " + self.today + " " + broker_branch)
         print(isSet)
         if isSet is 0:
             self.db .updateOne({"$and": [{"id": id}, {"data": {"$elemMatch": {"date": self.today}}}]},

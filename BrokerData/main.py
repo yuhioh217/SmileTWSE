@@ -28,6 +28,7 @@ def saveConfigToMongoDB():
 if __name__ == "__main__":
     # today = (date.today()).strftime("%Y-%m-%d")
     today = "2019-10-09"
+
     db = mongoController()
     db.connectDB("Brokers", "trading")
 
@@ -35,7 +36,7 @@ if __name__ == "__main__":
         bjson = json.loads(reader.read())
 
     if bjson["brokers"] is not None:
-        ''' initial the database structure to each broker's branch'''
+        # initial the database structure to each broker's branch
         for i, broker in enumerate(bjson["brokers"]):
             branches = bjson["brokers"][i]["branches"]
             for j, branch in enumerate(branches):
@@ -60,7 +61,7 @@ if __name__ == "__main__":
                     "sell": _getTrade.getSell()
                 }
 
-                ''' check the data in date is set or not '''
+                # check the data in date is set or not
                 isSet = db.getQueryCount({"brokerBranch": brokerBranch,
                                           "data": {"$elemMatch": {"date": today}}})
                 if isSet is 0:
