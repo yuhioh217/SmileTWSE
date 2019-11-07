@@ -24,13 +24,15 @@ class getBranchTrade():
         self.db = ""
 
     def getBuy(self):
+        print(self.df_buy)
         self.buy_datasets = (self.df_buy.iloc[2:, [0, 1, 2, 3]]).dropna(
-            thresh=3, axis=0).dropna(thresh=3, axis=1)
+            thresh=3, axis=0).dropna(thresh=0, axis=1)
+        print(self.buy_datasets)
         return self.collectData(self.buy_datasets)
 
     def getSell(self):
         self.sell_datasets = (self.df_sell.iloc[2:, [0, 1, 2, 3]]).dropna(
-            thresh=3, axis=0).dropna(thresh=3, axis=1)
+            thresh=3, axis=0).dropna(thresh=0, axis=1)
         return self.collectData(self.sell_datasets)
 
     def collectData(self, datasets):
@@ -120,7 +122,7 @@ class getBranchTrade():
         isSet = self.db .getQueryCount(
             {"$and": [{"id": id}, {"data": {"$elemMatch": {"date": self.today, "brokerbranch": broker_branch}}}]})
         print(id + " " + self.today + " " + broker_branch)
-        print(isSet)
+        # print(isSet)
         if isSet is 0:
             self.db .updateOne({"$and": [{"id": id}, {"data": {"$elemMatch": {"date": self.today}}}]},
                                {"$push": {"data.$[].diff": diff, "data.$[].brokerbranch": self.broker_branch}})
