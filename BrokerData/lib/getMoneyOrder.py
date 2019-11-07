@@ -24,10 +24,10 @@ class getBranchTrade():
         self.db = ""
 
     def getBuy(self):
-        print(self.df_buy)
+        # print(self.df_buy)
         self.buy_datasets = (self.df_buy.iloc[2:, [0, 1, 2, 3]]).dropna(
             thresh=3, axis=0).dropna(thresh=0, axis=1)
-        print(self.buy_datasets)
+        # print(self.buy_datasets)
         return self.collectData(self.buy_datasets)
 
     def getSell(self):
